@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Note App</h1>
+  
+  <div class="notes-container">
+    <div class="notes-list">
+      <div *ngFor="let note of notes" class="note-card" [class.selected]="selectedNote?.id === note.id" (click)="selectNote(note)">
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.content }}</p>
+        <div class="note-actions">
+          <button (click)="deleteNote(note.id!)">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-editor">
+      <h2>Create New Note</h2>
+      <div class="note-form">
+        <input type="text" [(ngModel)]="newNote.title" placeholder="Title" />
+        <textarea [(ngModel)]="newNote.content" placeholder="Content"></textarea>
+        <button (click)="createNote()">Create</button>
+      </div>
+
+      <div class="selected-note" *ngIf="selectedNote">
+        <h2>Edit Note</h2>
+        <div class="note-form">
+          <input type="text" [(ngModel)]="selectedNote.title" placeholder="Title" />
+          <textarea [(ngModel)]="selectedNote.content" placeholder="Content"></textarea>
+          <button (click)="updateNote()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
